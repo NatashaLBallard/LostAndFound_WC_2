@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div th:replace="base :: navbarmenu"></div>
+
+
+<h2>Item Details</h2>
+<div th:replace="base :: navlinks"></div><br/><br/>
+
+<div class="container">
+    <h2>Item Detail</h2>
+    <div class="card">
+        <div class="card-body">
+            <div th:if="${item.image}!=null">
+                <img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/>
+                <hr/>
+            </div>
+            <b>Name of Item:</b> <Span th:text="${item.itemName}"></Span><br/>
+            <b>Category:</b> <Span th:text="${item.itemCategory}"></Span><br/>
+            <b>Date Lost:</b> <Span th:text="${item.dateLost}"></Span><br/>
+            <b>Description:</b> <Span th:text="${item.description}"></Span><br/>
+            <b>Found:</b> <Span th:text="${item.found}"></Span><br/>
+        </div>
+    </div>
+</div>
+
+<!--<div th:if="${message1}" th:text="${message1}" th:class="${'alert ' + alertClass}"/>-->
+<!--<div th:if="${message2}" th:text="${message2}" th:class="${'alert ' + alertClass}"/>-->
+
+</body>
+</html>

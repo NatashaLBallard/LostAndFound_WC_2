@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+</head>
+<body>
+
+<div th:replace="base :: navbarmenu"></div>
+
+
+<h2>Report A Lost Item</h2>
+<div th:replace="base :: navlinks"></div><br/><br/>
+
+<form action="#"
+      th:action="@{/process}"
+      th:object="${item}"
+      method="post">
+    <div class="col-3">
+        <input type="hidden" th:field="*{id}" />
+    </div>
+    <div class="col-3">
+        <label id="labelItemName">Name of Item</label>
+        <input type="text" class="form-control" id="textName" th:field="*{itemName}" placeholder="Enter name of lost item"/>
+        <span th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelDateLost">Date Lost</label>
+        <input type="text" class="form-control" id="textDateLost" th:field="*{dateLost}" placeholder="Enter the date the item was lost"/>
+        <span th:if="${#fields.hasErrors('dateLost')}" th:errors="*{dateLost}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelDescription">Description</label>
+        <input type="text" class="form-control" id="textDescription" th:field="*{description}" placeholder="Enter description of lost item"/>
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelItemCategory">Item Category</label>
+        <Select th:field="*{itemCategory}">
+            <option value="null" >    </option>
+            <option value="Clothes">Clothes</option>
+            <option value="Pets">Pets</option>
+            <option value="Other">Other</option>
+        </Select>
+        <span th:if="${#fields.hasErrors('itemCategory')}" th:errors="*{itemCategory}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelImage">Image</label>
+        <input type="url" class="form-control" id="urlImage" th:field="*{image}" placeholder="Enter in a url to display an image of the lost item"/>
+        <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+    </div>
+    <br/>
+
+
+    <div class="col-3">
+        <label id="labelFound">Lost of Found</label>
+        <Select th:field="*{found}">
+            <option value="No">Lost</option>
+            <option value="Yes">Found</option>
+        </Select>
+        <span th:if="${#fields.hasErrors('found')}" th:errors="*{found}"></span>
+    </div>
+
+
+    <br/>
+    <div class="col-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+
+
+
+<!--Start of NAVIGATION MENU-->
+<div th:fragment="navbarmenu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">
+            <img src="http://michigantrails.org/wp-content/uploads/2017/08/6362357838581537451544448583_lost-and-found-300x289.png"
+                 alt="logo pic" height="100px" width="100px" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/add}">REPORT LOST ITEM</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/list}">LIST</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/currentlist}">VIEW ALL</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--End of NAVIGATION MENU-->
+
+
+
+
+
+<div th:fragment="navlinks">
+    <a href="/">Index</a> |
+    <a href="/add">Report Lost Item</a> |
+    <a href="/list">List of </a> |
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div th:replace="base :: navbarmenu"></div>
+
+
+<h2>Report A Lost Item</h2>
+<div th:replace="base :: navlinks"></div><br/><br/>
+
+<div class="container">
+    <table class="table" title="items" >
+        <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Date Lost</th>
+            <th>Description</th>
+            <th>Found</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.image}"></td>
+
+            <td th:text="${item.itemName}"></td>
+
+            <td th:text="${item.itemCategory}"></td>
+
+            <td th:text="${item.dateLost}"></td>
+
+            <td th:text="${item.description}"></td>
+
+            <td th:text="${item.found}"></td>
+            <td>
+                <a th:href="@{/detail/{id}(id=${item.id})}">Details</a>
+            </td>
+            <td><a th:href="@{/update/{id} (id=${item.id})}">Update</a></td>
+            <td><a th:href="@{/found/{id} (id=${item.id})}">Found</a></td>
+            <td><a th:href="@{/lost/{id} (id=${item.id})}">Lost</a></td>
+        </tr>
+        </tbody>
+        <a th:href="currentlist">Show All Reports</a>
+    </table>
+</div>
+</body>
+</html>
