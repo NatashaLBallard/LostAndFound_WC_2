@@ -56,7 +56,7 @@ public class MainController {
 
 
 
-    @RequestMapping("userlist")
+    @RequestMapping("showuserlist")
     public String showUserList(Model model, Authentication auth)
     {
         if(auth!=null)
@@ -121,22 +121,22 @@ public class MainController {
 //        model.addAttribute("itemobject",itemRepository.findOne(id));
 //        return"userlist";
 //    }
-
-
-
-
-
-//    @PostMapping("/additemtouser")
-//    public String showItemToUser(HttpServletRequest request, Model model)
-//    {
-//        String userid = request.getParameter("userid");
-//        model.addAttribute("newuseritem",userRepository.findOne(new Long(userid)));
 //
-//        //Make items disappear from add form when they are already included (Set already makes it impossible to add multiple)
-//        //model.addAttribute("skillList",skillRepository.findAll());
 //
-//        return "addskilltojob";
-//    }
+
+
+
+    @PostMapping("/additemtouser")
+    public String showItemToUser(HttpServletRequest request, Model model)
+    {
+        String userid = request.getParameter("userid");
+        model.addAttribute("newuseritem",userRepository.findOne(new Long(userid)));
+
+        //Make items disappear from add form when they are already included (Set already makes it impossible to add multiple)
+        //model.addAttribute("skillList",skillRepository.findAll());
+
+        return "addskilltojob";
+    }
 
 
 

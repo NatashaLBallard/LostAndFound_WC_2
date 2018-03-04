@@ -19,6 +19,8 @@
         <tr>
             <th></th>
             <th>Submitted By</th>
+            <th>Submitted By2</th>
+            <th>Item Submission ID</th>
             <th>Name</th>
             <th>Category</th>
             <th>Date Lost</th>
@@ -34,6 +36,10 @@
                 <p sec:authentication="name"></p>
                 </span>
             </td>
+
+            <td th:text="${item.users}"></td>
+
+            <td th:text="${item.id}"></td>
 
             <td th:text="${item.itemName}"></td>
 

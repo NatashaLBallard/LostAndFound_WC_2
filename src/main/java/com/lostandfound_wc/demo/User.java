@@ -41,7 +41,7 @@ public class User {
 
 
     @ManyToMany
-            //(mappedBy = "users")
+        (mappedBy = "users")
     private Set<Item> myItems;
 
     public User() {
@@ -151,6 +151,10 @@ public class User {
 
 
 
+    public void addItem(Item item)
+    {
+        this.myItems.add(item);
+    }
 
 }
 
