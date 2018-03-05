@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div th:replace="base :: navbarmenu"></div>
+
+
+<h2>View Your Lost Items</h2>
+<div th:replace="base :: navlinks"></div><br/><br/>
+
+<!--<form th:action="@{/viewcurrentuseritems}" method="post">-->
+    <!--<input type="submit" value="Search" />-->
+<!--</form>-->
+
+
+
+
+<div class="container">
+    <table class="table" title="searchresults" >
+        <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Date Lost</th>
+            <th>Description</th>
+            <th>Found</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td><img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/></td>
+
+            <td th:text="${item.itemName}"></td>
+
+            <td th:text="${item.itemCategory}"></td>
+
+            <td th:text="${item.dateLost}"></td>
+
+            <td th:text="${item.description}"></td>
+
+            <td th:text="${item.found}"></td>
+            <td>
+                <a th:href="@{/detail/{id}(id=${item.id})}">Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

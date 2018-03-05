@@ -216,82 +216,6 @@ public class MainController {
 
 
 
-//
-//    @RequestMapping(value="/additemtouser/{id}", method = RequestMethod.GET)
-//    public String addItemToUser(Model model, @PathVariable("id") long id)
-//    {
-//        model.addAttribute("itemobject",itemRepository.findAll());
-//        model.addAttribute("user", userRepository.findOne(id));
-//        return"additemtouser";
-//    }
-
-
-//    @RequestMapping(value="/user/{id}/items", method=RequestMethod.GET)
-//    public String userAddItems(@PathVariable Long id, Model model) {
-//        Item item = itemRepository.findOne(id);
-//        User user = userRepository.findOne(id);
-//
-//        if (user != null) {
-//            if (!user.hasItem(item)) {
-//                user.getMyItems().add(item);
-//            }
-//            userRepository.save(user);
-//            model.addAttribute("user", userRepository.findOne(id));
-//            model.addAttribute("items", itemRepository.findAll());
-//            return "redirect:/list";
-//        }
-//        return "redirect:/list";
-//    }
-
-
-
-
-
-
-//
-//    @GetMapping("/additemtouser/{id}")
-//    public String addItemToUser(Model model, @PathVariable("id") long id)
-//    {
-//        model.addAttribute("itemobject",itemRepository.findOne(id));
-//        model.addAttribute("users", userRepository.findAll());
-//        return"additemtouser";
-//    }
-//
-
-
-
-
-
-
-
-
-
-//
-//    @PostMapping("/additemtouser")
-//    public String showItemToUser(HttpServletRequest request, Model model)
-//    {
-//        String userid = request.getParameter("userid");
-//        model.addAttribute("newuseritem",userRepository.findOne(new Long(userid)));
-//
-//        //Make items disappear from add form when they are already included (Set already makes it impossible to add multiple)
-//        //model.addAttribute("skillList",skillRepository.findAll());
-//
-//        return "userlist";
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @RequestMapping("/list")
     public String listItems(Model model){
@@ -320,12 +244,12 @@ public class MainController {
         return"adminlist";
     }
 
-    @RequestMapping("/userlist/{id}")
-    public String usersListings(@PathVariable("id") long id,Model model){
-        model.addAttribute("users",userRepository.findOne(id));
-        model.addAttribute("items",itemRepository.findAll());
-        return"userlist";
-    }
+//    @RequestMapping("/userlist/{id}")
+//    public String usersListings(@PathVariable("id") long id,Model model){
+//        model.addAttribute("users",userRepository.findAllBySavedUsernameIs(user));
+//        model.addAttribute("items",itemRepository.findAll());
+//        return"userlist";
+//    }
 //
 //    @RequestMapping("/detail/{id}")
 //    public String showDetail(@PathVariable("id")long id,Model model){
@@ -447,12 +371,44 @@ public class MainController {
     }
 
     @PostMapping("/search")
-    public String showSearchResults(HttpServletRequest request, Model model){
+    public String showSearchByUsernameResults(HttpServletRequest request, Model model){
         String searchString = request.getParameter("search");
         model.addAttribute("search",searchString);
         model.addAttribute("items", itemRepository.findAllBySavedUsernameContainingIgnoreCase(searchString));
         return "searchbyusername";
     }
 
+
+
+//
+//    @GetMapping ("/viewcurrentuseritems")
+//    public String viewCurrentUserItems(){
+//        return "viewcurrentuseritems";
+//    }
+
+
+//    @PostMapping("/viewcurrentuseritems")
+//    public String showItemsByCurrentUserResults(HttpServletRequest request, Model model){
+//        String searchString = request.getParameter("searchmine");
+//        model.addAttribute("searchmine",searchString);
+//        model.addAttribute("items", itemRepository.findAllBySavedUsernameIs(searchString));
+//        return "viewcurrentuseritems";
+//    }
+//
+
+
+    @RequestMapping("/viewcurrentuseritems")
+    public String showItemsByCurrentUserResults(Model model, Authentication authentication){
+        model.addAttribute("items",itemRepository.findAllBySavedUsernameIs(authentication.getName()));
+        return "viewcurrentuseritems";
+    }
+
+
+//    @RequestMapping("/adminlist/{id}")
+//    public String allListings(@PathVariable("id") long id,Model model){
+//        model.addAttribute("items",itemRepository.findAll());
+//        model.addAttribute("users",userRepository.findOne(id));
+//        return"adminlist";
+//    }
 
 }

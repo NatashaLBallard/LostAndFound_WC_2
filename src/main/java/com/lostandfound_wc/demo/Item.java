@@ -46,6 +46,8 @@ public class Item {
 
     private String search;
 
+    private String viewCurrentUserItems;
+
 
 
 
@@ -225,5 +227,13 @@ public class Item {
 
     public void setUsers(User users) {
         this.users = users;
+    }
+
+    public String getViewCurrentUserItems() {
+        return viewCurrentUserItems;
+    }
+
+    public void setViewCurrentUserItems(String viewCurrentUserItems) {
+        this.viewCurrentUserItems = viewCurrentUserItems;
     }
 }
