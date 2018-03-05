@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -32,7 +32,7 @@
                     <a class="nav-link" th:href="@{/list}">LOST ITEMS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/currentlist}">VIEW ALL</a>
+                    <a class="nav-link" sec:authorize="hasAuthority('ADMIN')" th:href="@{/currentlist}">VIEW ALL</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/search}">SEARCH</a>
@@ -51,7 +51,7 @@
     <a href="/">Index</a> |
     <a href="/add">Report Lost Item</a> |
     <a href="/list">View All Lost</a> |
-    <a href="/listfound">View All Found</a> |
+    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/listfound}">View All Found</a>|
     <a href="/logout">Logout</a> |
 
 </div>

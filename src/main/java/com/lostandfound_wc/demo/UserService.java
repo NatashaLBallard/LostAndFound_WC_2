@@ -26,7 +26,7 @@ public class UserService {
         return userRepository.countByEmail(email);
     }
     public User findByUsername(String username){
-        return userRepository.findByEmail(username);
+        return userRepository.findByUsername(username);
     }
     public void saveUser(User user){
         user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));

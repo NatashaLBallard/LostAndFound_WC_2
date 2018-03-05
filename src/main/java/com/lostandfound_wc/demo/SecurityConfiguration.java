@@ -41,7 +41,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/userlist").access("hasAnyAuthority('USER','ADMIN')")
                 .antMatchers("/showitemdetails").access("hasAnyAuthority('USER','ADMIN')")
 
+
+
+
                 .antMatchers("/currentlist").access("hasAuthority('ADMIN')")
+                .antMatchers("/listfound").access("hasAuthority('ADMIN')")
                 .antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
