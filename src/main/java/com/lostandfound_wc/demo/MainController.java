@@ -266,6 +266,16 @@ public class MainController {
         return "add";
     }
 
+
+
+//    @RequestMapping("/update/{id}")
+//    public String updateDetail(@PathVariable("id")long id, HttpServletRequest request, Model model){
+//        model.addAttribute("item",itemRepository.findOne(new Long(request.getParameter("id"))));
+//        return "add";
+//    }
+
+
+
     @RequestMapping("/found/{id}")
     public String foundItem(@PathVariable("id") long id,Model model){
         model.addAttribute("item",itemRepository.findOne(id));
