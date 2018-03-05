@@ -232,12 +232,33 @@ public class MainController {
         return"userlist";
     }
 
+
+
     @RequestMapping("/detail/{id}")
     public String showDetail(@PathVariable("id")long id, Model model){
         model.addAttribute("item",itemRepository.findOne(id));
         model.addAttribute("user",userRepository.findUserById(id));
         return "showitemdetails";
     }
+
+
+
+//    @RequestMapping("/detail/{id}/{username}")
+//    public String showDetail(@PathVariable("id")long id, @PathVariable("username") String username, Model model){
+//        model.addAttribute("item",itemRepository.findOne(id));
+//        model.addAttribute("user",userRepository.findUserByUsername(username));
+//        return "showitemdetails";
+//    }
+//
+////        @RequestMapping(value = "/detail/{id}", method=RequestMethod.GET)
+//    public String showDetail(@PathVariable("id")long id, @RequestParam ("username") String username,Model model){
+//        model.addAttribute("item",itemRepository.findOne(id));
+////        model.addAttribute("user",userRepository.findUserById(id));
+//        model.addAttribute("user",userRepository.findUserByUsername(username));
+//        model.addAttribute("user",userRepository.findByUsername(username));
+//        return "showitemdetails";
+//    }
+
 
     @RequestMapping("/update/{id}")
     public String updateDetail(@PathVariable("id")long id,Model model){

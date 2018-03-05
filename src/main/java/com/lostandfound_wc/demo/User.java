@@ -28,7 +28,7 @@ public class User {
     private boolean enabled;
 
     @Column(name="username")
-    private String username;
+    public String username;
 
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
