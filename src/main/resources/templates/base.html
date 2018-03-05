@@ -65,8 +65,11 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/list}"  >LOST ITEMS</a>
                 </li>
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" th:href="@{/currentlist}" sec:authorize="hasAuthority('ADMIN')" >VIEW ALL</a>-->
+                <!--</li>-->
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/currentlist}" sec:authorize="hasAuthority('ADMIN')" >VIEW ALL</a>
+                    <a class="nav-link" th:href="@{/currentlist}" >VIEW ALL</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/viewcurrentuseritems}" >VIEW MY ITEMS</a>
@@ -86,7 +89,8 @@
     <a href="/">Index</a> |
     <a href="/add">Report Lost Item</a> |
     <a href="/list">View Lost</a> |
-    <a href="/listfound" sec:authorize="hasAuthority('ADMIN')">View Found</a>
+    <!--<a href="/listfound" sec:authorize="hasAuthority('ADMIN')">View Found</a>-->
+    <a href="/listfound" >View Found</a> |
     <a href="/logout">Logout</a> |
 
 </div>

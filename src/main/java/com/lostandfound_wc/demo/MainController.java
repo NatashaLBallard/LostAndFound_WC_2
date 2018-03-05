@@ -411,4 +411,14 @@ public class MainController {
 //        return"adminlist";
 //    }
 
+
+
+    @RequestMapping("/viewallusers")
+    public String showAllUsers(Model model){
+        model.addAttribute("users",userRepository.findAll());
+        return "viewallusers";
+    }
+
+
+
 }
