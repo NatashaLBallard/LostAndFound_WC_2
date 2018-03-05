@@ -15,6 +15,11 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+
+    @NotNull
+    @Size(min=1)
+    private String alias;
+
     @NotNull
     @Size(min=1)
     private String itemName;
@@ -36,18 +41,24 @@ public class Item {
 
     private String addItem;
 
+    private String search;
 
 
 
-
-    @ManyToMany
+    @ManyToMany(mappedBy = "items")
     private Set<User> users;
 
     public Item(){
         this.users = new HashSet<>();
     }
 
+    public Set<User> getUsers(){
+        return users;
+    }
 
+    public void setUsers(Set<User> users){
+        this.users = users;
+    }
 
 
 
@@ -62,6 +73,14 @@ public class Item {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public String getItemName() {
@@ -115,13 +134,7 @@ public class Item {
 
 
 
-    public Set<User> getUsers(){
-        return users;
-    }
 
-    public void setUsers(Set<User> users){
-        this.users = users;
-    }
 
 
     @Override
@@ -142,5 +155,14 @@ public class Item {
 
     public void setAddItem(String addItem) {
         this.addItem = addItem;
+    }
+
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 }

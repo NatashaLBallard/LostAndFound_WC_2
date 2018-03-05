@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -14,17 +15,12 @@
 <div th:replace="base :: navlinks"></div><br/><br/>
 
 <form action="#"
-      th:action="@{/process}"
-      th:object="${item}"
+      th:action="@{/additem}"
+      th:object="${itemobject}"
       method="post">
     <div class="col-3">
         <input type="hidden" th:field="*{id}" />
         <input type="hidden" th:field="*{users}" />
-    </div>
-    <div class="col-3">
-        <label id="labelAlias">Alias Name for Submission</label>
-        <input type="text" class="form-control" id="textAlias" th:field="*{alias}" placeholder="Enter alias name for this submission"/>
-        <span th:if="${#fields.hasErrors('alias')}" th:errors="*{alias}"></span>
     </div>
     <div class="col-3">
         <label id="labelItemName">Name of Item</label>

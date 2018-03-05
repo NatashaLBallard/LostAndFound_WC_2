@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -10,14 +10,16 @@
 <div th:replace="base :: navbarmenu"></div>
 
 
-<h2>Report A Lost Item</h2>
+<h2>Current Listings</h2>
 <div th:replace="base :: navlinks"></div><br/><br/>
 
 <div class="container">
-    <table class="table" title="items" >
+    <table class="table" title="adminList">
         <thead>
         <tr>
-            <th></th>
+            <th></th> <!--Image-->
+            <th>Submitted By</th>
+            <th>Item ID</th>
             <th>Name</th>
             <th>Category</th>
             <th>Date Lost</th>
@@ -26,8 +28,18 @@
         </tr>
         </thead>
         <tbody>
+
         <tr th:each="item : ${items}">
             <td><img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/></td>
+
+            <!--<td><span sec:authorize="isAuthenticated()">-->
+            <!--<p sec:authentication="name"></p>-->
+            <!--</span>-->
+            <!--</td>-->
+
+            <td th:text="${item.alias}"></td>
+
+            <td th:text="${item.id}"></td>
 
             <td th:text="${item.itemName}"></td>
 
@@ -46,7 +58,6 @@
             <td><a th:href="@{/lost/{id} (id=${item.id})}">Lost</a></td>
         </tr>
         </tbody>
-        <a th:href="currentlist">Show All Reports</a>
     </table>
 </div>
 </body>

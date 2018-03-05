@@ -18,11 +18,14 @@ Welcome <b><p sec:authentication="name">!</p></b>
   <!--<p>You are signed in as a<p sec:authentication="principal.authorities"></p></p>-->
 </span>
 
+
+
 <div class="container">
     <table class="table" title="items" >
         <thead>
         <tr>
             <th></th>
+            <th>Submission ID</th>
             <th>Name</th>
             <th>Category</th>
             <th>Date Lost</th>
@@ -32,7 +35,9 @@ Welcome <b><p sec:authentication="name">!</p></b>
         </thead>
         <tbody>
         <tr th:each="item : ${items}">
-            <td th:text="${item.image}"></td>
+            <td th:text="${item.id}"></td>
+
+            <td><img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/></td>
 
             <td th:text="${item.itemName}"></td>
 

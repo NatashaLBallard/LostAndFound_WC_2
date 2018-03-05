@@ -33,6 +33,9 @@ public class User {
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
             inverseJoinColumns=@JoinColumn(name="role_id"))
+    public Set<Item> getMyItems(){
+        return this.myItems;
+    }
     private Collection<Role> roles;
 
 
@@ -41,7 +44,7 @@ public class User {
 
 
     @ManyToMany
-        (mappedBy = "users")
+//        (mappedBy = "users")
     private Set<Item> myItems;
 
     public User() {
@@ -141,9 +144,7 @@ public class User {
 
 
 
-    public Set<Item> getMyItems(){
-        return myItems;
-    }
+
 
     public void setMyItems(Set<Item> myItems){
         this.myItems = myItems;

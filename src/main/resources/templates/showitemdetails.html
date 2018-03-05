@@ -21,6 +21,11 @@
                 <img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/>
                 <hr/>
             </div>
+            <!--<b>Submitted By:</b> <Span th:text="${user.getId()}"></Span><br/>-->
+            <!--<b>Submitted By:</b> <Span th:text="${#authentication.getPrincipal().getUsername()}"></Span><br/>-->
+            <!--<b>Submitted By:</b> <Span th:text="${user.{id}(id=${users.id})}"></Span><br/>-->
+            <b>Submitted By:</b> <Span th:text="${item.alias}"></Span><br/>
+            <b>Submission ID:</b> <Span th:text="${item.id}"></Span><br/>
             <b>Name of Item:</b> <Span th:text="${item.itemName}"></Span><br/>
             <b>Category:</b> <Span th:text="${item.itemCategory}"></Span><br/>
             <b>Date Lost:</b> <Span th:text="${item.dateLost}"></Span><br/>

@@ -114,29 +114,74 @@ public class MainController {
         return userRepository.findUserByUsername(auth.getName()).getMyItems().toString();
     }
 
+
+
+
+
+
+
+
+    @RequestMapping(value="/additemtouser/{id}", method = RequestMethod.GET)
+    public String addItemToUser(Model model, @PathVariable("id") long id)
+    {
+        model.addAttribute("itemobject",itemRepository.findAll());
+        model.addAttribute("user", userRepository.findOne(id));
+        return"additemtouser";
+    }
+
+
+//    @RequestMapping(value="/user/{id}/items", method=RequestMethod.GET)
+//    public String userAddItems(@PathVariable Long id,@RequestParam Long id, Model model) {
+//        Item item = itemRepository.findOne(id);
+//        User user = userRepository.findOne(id);
+//
+//        if (user != null) {
+//            if (!user.hasItems(item)) {
+//                user.getMyItems().add(item);
+//            }
+//            userRepository.save(user);
+//            model.addAttribute("user", userRepository.findOne(id));
+//            model.addAttribute("items", itemRepository.findAll());
+//            return "redirect:/list";
+//        }
+//        return "redirect:/list";
+//    }
+
+
+
+
+
+
+//
 //    @GetMapping("/additemtouser/{id}")
 //    public String addItemToUser(Model model, @PathVariable("id") long id)
 //    {
-//        //model.addAttribute("currentUser", userRepository.findAll());
 //        model.addAttribute("itemobject",itemRepository.findOne(id));
-//        return"userlist";
+//        model.addAttribute("users", userRepository.findAll());
+//        return"additemtouser";
 //    }
 //
+
+
+
+
+
+
+
+
+
 //
-
-
-
-    @PostMapping("/additemtouser")
-    public String showItemToUser(HttpServletRequest request, Model model)
-    {
-        String userid = request.getParameter("userid");
-        model.addAttribute("newuseritem",userRepository.findOne(new Long(userid)));
-
-        //Make items disappear from add form when they are already included (Set already makes it impossible to add multiple)
-        //model.addAttribute("skillList",skillRepository.findAll());
-
-        return "addskilltojob";
-    }
+//    @PostMapping("/additemtouser")
+//    public String showItemToUser(HttpServletRequest request, Model model)
+//    {
+//        String userid = request.getParameter("userid");
+//        model.addAttribute("newuseritem",userRepository.findOne(new Long(userid)));
+//
+//        //Make items disappear from add form when they are already included (Set already makes it impossible to add multiple)
+//        //model.addAttribute("skillList",skillRepository.findAll());
+//
+//        return "userlist";
+//    }
 
 
 
@@ -154,7 +199,7 @@ public class MainController {
     public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result){
 
         if (result.hasErrors()) {
-            return "itemform";
+            return "additem";
         }
         itemRepository.save(item);
         return "redirect:/list";
@@ -167,21 +212,32 @@ public class MainController {
         return"list";
     }
 
+
     @RequestMapping("/currentlist")
-    public String currentListings(Model model){
+    public String currentListings( Model model){
         model.addAttribute("items",itemRepository.findAll());
         return"currentlist";
     }
 
 
-    @RequestMapping("/userlist")
-    public String usersListings(Model model){
+    @RequestMapping("/adminlist/{id}")
+    public String allListings(@PathVariable("id") long id,Model model){
+        model.addAttribute("items",itemRepository.findAll());
+        model.addAttribute("users",userRepository.findOne(id));
+        return"adminlist";
+    }
+
+    @RequestMapping("/userlist/{id}")
+    public String usersListings(@PathVariable("id") long id,Model model){
+        model.addAttribute("users",userRepository.findOne(id));
         model.addAttribute("items",itemRepository.findAll());
         return"userlist";
     }
+
     @RequestMapping("/detail/{id}")
     public String showDetail(@PathVariable("id")long id, Model model){
         model.addAttribute("item",itemRepository.findOne(id));
+        model.addAttribute("user",userRepository.findUserById(id));
         return "showitemdetails";
     }
 
@@ -192,32 +248,24 @@ public class MainController {
     }
 
     @RequestMapping("/found/{id}")
-    public String foundItem(@PathVariable("id") long id,Model model,RedirectAttributes redirectAttributes){
+    public String foundItem(@PathVariable("id") long id,Model model){
         model.addAttribute("item",itemRepository.findOne(id));
 
         Item item=itemRepository.findOne(id);
 
         item.setFound("Yes");
 
-        //String roomRentMessage="\""+room.getAddress()+"\""+" is rented";
-
-        //redirectAttributes.addFlashAttribute("message1", roomRentMessage);
-
         model.addAttribute("anItem", itemRepository.findOne(id));
         itemRepository.save(item);
         return "redirect:/list";
     }
     @RequestMapping("/lost/{id}")
-    public String lostItem(@PathVariable("id") long id,Model model,RedirectAttributes redirectAttributes){
+    public String lostItem(@PathVariable("id") long id,Model model){
         model.addAttribute("item",itemRepository.findOne(id));
 
         Item item=itemRepository.findOne(id);
 
         item.setFound("No");
-
-//        String roomRentMessage="\""+room.getAddress()+"\""+" is available";
-//
-//        redirectAttributes.addFlashAttribute("message1", roomRentMessage);
 
         model.addAttribute("anItem", itemRepository.findOne(id));
         itemRepository.save(item);
@@ -243,4 +291,21 @@ public class MainController {
         }
         return "index";
     }
+
+
+
+    @GetMapping ("/search")
+    public String getSearch(){
+        return "search";
+    }
+
+    @PostMapping("/search")
+    public String showSearchResults(HttpServletRequest request, Model model){
+        String searchString = request.getParameter("search");
+        model.addAttribute("search",searchString);
+        model.addAttribute("items", itemRepository.findAllByAliasContainingIgnoreCase (searchString));
+        return "listbyalias";
+    }
+
+
 }

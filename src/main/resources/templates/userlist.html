@@ -31,6 +31,9 @@ Welcome <b><p sec:authentication="name">!</p></b>
         </tr>
         </thead>
         <tbody>
+        <!--<tr th:each="user : ${users}">-->
+        <!--<td th:text="${user.getId()}"></td>-->
+        <!--</tr>-->
         <tr th:each="item : ${items}">
             <td th:text="${item.image}"></td>
 
@@ -56,16 +59,16 @@ Welcome <b><p sec:authentication="name">!</p></b>
 
 
 
-    <div th:each="eachItem:${items}">
-        <p th:text="${eachItem.itemName}"></p>
-        <h4><a th:href="@{/addactortomovie/{id}(id=${eachItem.id})}" th:inline="text">Add actors</a></h4>
-        <div>
-            <h3>Actors:</h3>
-            <div th:each="eachActor:${eachMovie.actors}">
-                <p th:text="${eachActor.realName}"></p>
-            </div>
-        </div>
-    </div>
+    <!--<div th:each="eachItem:${items}">-->
+        <!--<p th:text="${eachItem.itemName}"></p>-->
+        <!--<h4><a th:href="@{/addactortomovie/{id}(id=${eachItem.id})}" th:inline="text">Add actors</a></h4>-->
+        <!--<div>-->
+            <!--<h3>Actors:</h3>-->
+            <!--<div th:each="eachActor:${eachMovie.actors}">-->
+                <!--<p th:text="${eachActor.realName}"></p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
 </div>
 </body>

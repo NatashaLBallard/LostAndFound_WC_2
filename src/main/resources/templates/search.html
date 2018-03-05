@@ -10,11 +10,19 @@
 <div th:replace="base :: navbarmenu"></div>
 
 
-<h2>Report A Lost Item</h2>
+<h2>Search By Alias</h2>
 <div th:replace="base :: navlinks"></div><br/><br/>
 
+<form th:action="@{/search}" method="post">
+    <input type="text" name="search" />
+    <input type="submit" value="Search" />
+</form>
+
+
+
+
 <div class="container">
-    <table class="table" title="items" >
+    <table class="table" title="searchresults" >
         <thead>
         <tr>
             <th></th>
@@ -46,7 +54,6 @@
             <td><a th:href="@{/lost/{id} (id=${item.id})}">Lost</a></td>
         </tr>
         </tbody>
-        <a th:href="currentlist">Show All Reports</a>
     </table>
 </div>
 </body>
