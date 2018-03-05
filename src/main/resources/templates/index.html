@@ -24,8 +24,8 @@ Welcome <b><p sec:authentication="name">!</p></b>
     <table class="table" title="items" >
         <thead>
         <tr>
-            <th></th>
             <th>Submission ID</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Category</th>
             <th>Date Lost</th>
@@ -37,7 +37,8 @@ Welcome <b><p sec:authentication="name">!</p></b>
         <tr th:each="item : ${items}">
             <td th:text="${item.id}"></td>
 
-            <td><img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/></td>
+            <!--<td><img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%" /></td>-->
+            <td><img th:if="(${item.image}==null)?'http://www.flydulles.com/sites/default/files/field/image/istock_lost_found_web.jpg':${item.image}" alt="Item Picture" style="width:30%"/></td>
 
             <td th:text="${item.itemName}"></td>
 

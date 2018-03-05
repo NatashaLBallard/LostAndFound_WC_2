@@ -32,7 +32,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String showIndex(Model model){
-        model.addAttribute("items",itemRepository.findAllByItemCategoryContainingIgnoreCase("Lost"));
+        model.addAttribute("items",itemRepository.findAllByFoundContainingIgnoreCase("No"));
         return "index";
     }
 
@@ -210,6 +210,12 @@ public class MainController {
         return"list";
     }
 
+
+    @RequestMapping("/listfound")
+    public String listOfFoundItems(Model model){
+        model.addAttribute("items",itemRepository.findAllByFoundContainingIgnoreCase("Yes"));
+        return"list";
+    }
 
     @RequestMapping("/currentlist")
     public String currentListings( Model model){
