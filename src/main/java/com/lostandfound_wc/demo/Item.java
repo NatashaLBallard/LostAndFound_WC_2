@@ -45,12 +45,15 @@ public class Item {
 
 
 
-    @ManyToMany(mappedBy = "items")
+    @ManyToMany
+//            (mappedBy = "items")
     private Set<User> users;
 
     public Item(){
         this.users = new HashSet<>();
     }
+
+
 
     public Set<User> getUsers(){
         return users;
@@ -63,15 +66,11 @@ public class Item {
 
 
 
-
-
-
-
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(long itemId) {
         this.id = id;
     }
 

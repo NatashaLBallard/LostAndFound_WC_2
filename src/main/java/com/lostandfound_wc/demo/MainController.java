@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.core.Authentication;
 import sun.net.www.protocol.http.AuthenticationInfo;
 
@@ -120,23 +118,23 @@ public class MainController {
 
 
 
-
-    @RequestMapping(value="/additemtouser/{id}", method = RequestMethod.GET)
-    public String addItemToUser(Model model, @PathVariable("id") long id)
-    {
-        model.addAttribute("itemobject",itemRepository.findAll());
-        model.addAttribute("user", userRepository.findOne(id));
-        return"additemtouser";
-    }
+//
+//    @RequestMapping(value="/additemtouser/{id}", method = RequestMethod.GET)
+//    public String addItemToUser(Model model, @PathVariable("id") long id)
+//    {
+//        model.addAttribute("itemobject",itemRepository.findAll());
+//        model.addAttribute("user", userRepository.findOne(id));
+//        return"additemtouser";
+//    }
 
 
 //    @RequestMapping(value="/user/{id}/items", method=RequestMethod.GET)
-//    public String userAddItems(@PathVariable Long id,@RequestParam Long id, Model model) {
+//    public String userAddItems(@PathVariable Long id, Model model) {
 //        Item item = itemRepository.findOne(id);
 //        User user = userRepository.findOne(id);
 //
 //        if (user != null) {
-//            if (!user.hasItems(item)) {
+//            if (!user.hasItem(item)) {
 //                user.getMyItems().add(item);
 //            }
 //            userRepository.save(user);
