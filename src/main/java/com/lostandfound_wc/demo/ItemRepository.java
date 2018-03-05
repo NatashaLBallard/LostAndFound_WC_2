@@ -6,6 +6,8 @@ public interface ItemRepository extends CrudRepository<Item,Long> {
     Iterable <Item> findAllByItemCategoryContainingIgnoreCase(String itemCategory);
     Iterable <Item> findAllByFoundContainingIgnoreCase(String found);
     Iterable <Item> findAllByAliasContainingIgnoreCase(String alias);
+    Iterable <Item> findAllBySavedUsernameContainingIgnoreCase(String alias);
+    //Iterable <Item> findAllByUsers(String name);
 //   User findUserByUsername(String username);
    // User findByUsername(String username);
    // Iterable <Item> findAllByUserAndId(Long id);

@@ -76,6 +76,8 @@ public class MainController {
 //        currentUser.addItem(item);
 //        userRepository.save(currentUser);
         item.setUsers(currentUser);
+//        item.setSavedUsername(String.valueOf(currentUser));
+        item.setSavedUsername(auth.getName());
         System.out.println(item.getId() +" - This is the item ID to be saved");
         System.out.println(item.getUsers().username +" - This is the saved username.");
 
@@ -121,17 +123,6 @@ public class MainController {
             return "add";
         }
         else {
-//            item.setSavedUsername(auth.getName());
-//            item.setSavedUsername("");
-
-//
-//            item.setSavedUsername(userRepository.findUserByUsername(auth.getName()));
-//            Item saveThisUsername = userRepository.findUserByUsername(auth.getName());
-//            itemRepository.save(item);
-////
-//
-
-
             return "redirect:/list";
 
         }
@@ -459,8 +450,8 @@ public class MainController {
     public String showSearchResults(HttpServletRequest request, Model model){
         String searchString = request.getParameter("search");
         model.addAttribute("search",searchString);
-        model.addAttribute("items", itemRepository.findAllByAliasContainingIgnoreCase (searchString));
-        return "listbyalias";
+        model.addAttribute("items", itemRepository.findAllBySavedUsernameContainingIgnoreCase(searchString));
+        return "searchbyusername";
     }
 
 
