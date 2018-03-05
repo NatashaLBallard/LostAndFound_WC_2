@@ -38,15 +38,30 @@ public class User {
 
 
 
-
-
     @OneToMany
- (mappedBy = "users", cascade = CascadeType.ALL)
-    public Set<Item> myItems;
+            (mappedBy = "users", cascade = CascadeType.ALL)
+
+    private Set<Item> myItems;
 
     public User() {
         this.myItems = new HashSet<>();
     }
+
+
+
+
+//    public Set<Item> myItems;
+//
+//    @OneToMany
+//    (mappedBy = "users", cascade = CascadeType.ALL)
+//    public Set<Item> getMyItems(){
+//        return myItems;
+//    }
+
+
+//    public User() {
+//        this.myItems = new HashSet<>();
+//    }
 
 
 

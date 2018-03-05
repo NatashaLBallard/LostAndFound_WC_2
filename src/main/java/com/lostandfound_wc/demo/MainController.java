@@ -65,7 +65,7 @@ public class MainController {
 //    }
 //
     @PostMapping("/add")
-    public String saveMyItem(@Valid @ModelAttribute("item") Item item, BindingResult result, Authentication auth)
+    public String saveMyItem(@Valid @ModelAttribute("item") Item item, @Valid @ModelAttribute("user") User user,BindingResult result, Authentication auth)
     {
         if (result.hasErrors()) {
             return "add";
@@ -74,7 +74,18 @@ public class MainController {
         User currentUser = userRepository.findUserByUsername(auth.getName());
         currentUser.getMyItems().toString();
         currentUser.addItem(item);
-//        item.setUsers(currentUser);
+  //      item.setUsers(currentUser);
+
+
+        //Test
+//        userRepository.save(user);
+//        User saveThisUsername = itemRepository.findUserByUsername(auth.getName());
+//        saveThisUsername.getMyItems().toString();
+//        saveThisUsername.addItem(item);
+//
+//
+//        item.setSavedUsername(auth.getName());
+//        user.setUsername(auth.getName());
 
         item.setSavedUsername(auth.getName());
         userRepository.save(currentUser);
@@ -96,6 +107,32 @@ public class MainController {
     }
 
 
+//    @PostMapping("/process")
+//    public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result, Authentication auth){
+//
+//        System.out.println(result);
+//        if (result.hasErrors()) {
+//            return "add";
+//        }
+//        else {
+////            item.setSavedUsername(auth.getName());
+////            item.setSavedUsername("");
+//
+////
+////            item.setSavedUsername(userRepository.findUserByUsername(auth.getName()));
+////            Item saveThisUsername = userRepository.findUserByUsername(auth.getName());
+////            itemRepository.save(item);
+//////
+////
+//            System.out.println(item.getId() +" - This is the item ID to be saved");
+//            System.out.println(item.getSavedUsername() +" - This is the saved username.");
+//
+//
+//            return "redirect:/list";
+//
+//        }
+
+
     @PostMapping("/process")
     public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result){
         System.out.println(item.getId() +" - This is the item ID to be saved");
@@ -108,6 +145,9 @@ public class MainController {
         itemRepository.save(item);
         return "redirect:/list";
     }
+
+
+
 
 
 

@@ -48,41 +48,66 @@ public class Item {
 
 
 
+
     @ManyToOne
 //            (mappedBy = "items")
-    private Set<User> users;
+    private User users;
 
     public Item(){
-        this.users = new HashSet<>();
-    }
-
-
-
-
-    public Item(String alias, String savedUsername, String itemName, String description, String dateLost, String image,
-                 String found, String itemCategory, String search) {
-        this.alias = alias;
-        this.savedUsername = savedUsername;
-        this.itemName = itemName;
-        this.dateLost = dateLost;
-        this.description = description;
-        this.image = image;
-        this.found = found;
-        this.itemCategory = itemCategory;
-        this.search = search;
 
     }
 
 
-    public Set<User> getUsers(){
-        return users;
-    }
-
-    public void setUsers(Set<User> users){
-        this.users = users;
-    }
 
 
+
+
+//
+//    private User user;
+//
+//    public Item() {
+//
+//    }
+//
+//    @ManyToOne
+////            (mappedBy = "items")
+//    @JoinColumn(name = "ITEM_ID")
+//    public User getUser(){
+//        return user;
+//    }
+////    private Set<User> users;
+//
+////    public Item(){
+////        this.users = new HashSet<>();
+////    }
+
+
+
+//
+//    public Item(String alias, String savedUsername, String itemName, String description, String dateLost, String image,
+//                 String found, String itemCategory, String search) {
+//        this.alias = alias;
+//        this.savedUsername = savedUsername;
+//        this.itemName = itemName;
+//        this.dateLost = dateLost;
+//        this.description = description;
+//        this.image = image;
+//        this.found = found;
+//        this.itemCategory = itemCategory;
+//        this.search = search;
+//
+//    }
+
+//
+//    public Set<User> getUsers(){
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users){
+//        this.users = users;
+//    }
+//
+//
 
 
     public long getId() {
@@ -192,5 +217,13 @@ public class Item {
 
     public void setSavedUsername(String savedUsername) {
         this.savedUsername = savedUsername;
+    }
+
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
     }
 }
