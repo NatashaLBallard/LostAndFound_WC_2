@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -8,6 +8,40 @@
 
 
 
+
+<!--&lt;!&ndash;Start of NAVIGATION MENU&ndash;&gt;-->
+<!--<div th:fragment="navbarmenu">-->
+    <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+        <!--<a class="navbar-brand" th:href="@{/}">-->
+            <!--<img src="https://thecliparts.com/wp-content/uploads/2017/01/cool-design-symbol-lost-and-found-clipart.jpg"-->
+                 <!--alt="logo pic" height="100px" width="100px" />-->
+        <!--</a>-->
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+            <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+
+        <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+            <!--<ul class="navbar-nav mr-auto">-->
+                <!--<li class="nav-item active">-->
+                    <!--<a class="nav-link" th:href="@{/}" sec:authorize="isAnonymous()">HOME <span class="sr-only">(current)</span></a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" th:href="@{/add}" sec:authorize="hasAnyAuthority('USER','ADMIN')">REPORT LOST ITEM</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" th:href="@{/list}" sec:authorize="hasAnyAuthority('USER','ADMIN')" >LOST ITEMS</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" th:href="@{/currentlist}" sec:authorize="hasAuthority('ADMIN')" >VIEW ALL</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item">-->
+                    <!--<a class="nav-link" th:href="@{/search}" sec:authorize="hasAuthority('ADMIN')">SEARCH</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</nav>-->
+<!--</div>-->
+<!--&lt;!&ndash;End of NAVIGATION MENU&ndash;&gt;-->
 
 <!--Start of NAVIGATION MENU-->
 <div th:fragment="navbarmenu">
@@ -26,24 +60,22 @@
                     <a class="nav-link" th:href="@{/}">HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/add}">REPORT LOST ITEM</a>
+                    <a class="nav-link" th:href="@{/add}" >REPORT LOST ITEM</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/list}">LOST ITEMS</a>
+                    <a class="nav-link" th:href="@{/list}"  >LOST ITEMS</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/currentlist}" sec:authorize="hasAuthority('ADMIN')" >VIEW ALL</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/search}">SEARCH</a>
+                    <a class="nav-link" th:href="@{/search}" >SEARCH</a>
                 </li>
             </ul>
         </div>
     </nav>
 </div>
 <!--End of NAVIGATION MENU-->
-
-
 
 
 

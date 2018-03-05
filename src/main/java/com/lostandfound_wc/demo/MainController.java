@@ -41,12 +41,73 @@ public class MainController {
         return "login";
     }
 
+
     @GetMapping("/add")
-    public String showAddItemForm(Model model){
+    public String addMyItemForm(Model model){
         model.addAttribute("item",new Item());
         return"/add";
     }
 
+//    @PostMapping("/add")
+//    public String saveMyItem(@Valid @ModelAttribute("item") Item item, BindingResult result, Authentication auth)
+//    {
+//        if (result.hasErrors()) {
+//            return "add";
+//        }
+//        itemRepository.save(item);
+//        User currentUser = userRepository.findUserByUsername(auth.getName());
+//        currentUser.getMyItems().toString();
+//        currentUser.addItem(item);
+//        userRepository.save(currentUser);
+//
+//        return "redirect:/";
+//
+//    }
+//
+    @PostMapping("/add")
+    public String saveMyItem(@Valid @ModelAttribute("item") Item item, BindingResult result, Authentication auth)
+    {
+        if (result.hasErrors()) {
+            return "add";
+        }
+        itemRepository.save(item);
+        User currentUser = userRepository.findUserByUsername(auth.getName());
+        currentUser.getMyItems().toString();
+        currentUser.addItem(item);
+//        item.setUsers(currentUser);
+
+        item.setSavedUsername(auth.getName());
+        userRepository.save(currentUser);
+
+//
+
+
+
+
+      //  Item receivedName = itemRepository.findByUsername("currentUser");
+//        currentUser.getMyItems().toString();
+//        currentUser.addItem(item);
+////        savedUsername.
+//
+//        userRepository.save(currentUser);
+
+        return "redirect:/";
+
+    }
+
+
+    @PostMapping("/process")
+    public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result){
+        System.out.println(item.getId() +" - This is the item ID to be saved");
+        System.out.println(item.getSavedUsername() +" - This is the saved username.");
+
+        System.out.println(result);
+        if (result.hasErrors()) {
+            return "add";
+        }
+        itemRepository.save(item);
+        return "redirect:/list";
+    }
 
 
 
@@ -80,30 +141,32 @@ public class MainController {
 
 
 
+//
+//    @GetMapping("/additem")
+//    public String addItem(Model model){
+//        model.addAttribute("itemobject",new Item());
+//        return"additem";
+//    }
 
-    @GetMapping("/additem")
-    public String addItem(Model model){
-        model.addAttribute("itemobject",new Item());
-        return"additem";
-    }
+
+//
+//    @PostMapping("/additem")
+//    public String saveMyItem(@Valid @ModelAttribute("itemobject") Item item, BindingResult result, Authentication auth)
+//    {
+//        if (result.hasErrors()) {
+//            return "additem";
+//        }
+//        itemRepository.save(item);
+//        User currentUser = userRepository.findUserByUsername(auth.getName());
+//        currentUser.getMyItems().toString();
+//        currentUser.addItem(item);
+//        userRepository.save(currentUser);
+//
+//        return "redirect:/";
+//
+//    }
 
 
-
-    @PostMapping("/additem")
-    public String saveMyItem(@Valid @ModelAttribute("itemobject") Item item, BindingResult result, Authentication auth)
-    {
-        if (result.hasErrors()) {
-            return "additem";
-        }
-        itemRepository.save(item);
-        User currentUser = userRepository.findUserByUsername(auth.getName());
-        currentUser.getMyItems().toString();
-        currentUser.addItem(item);
-        userRepository.save(currentUser);
-
-        return "redirect:/";
-
-    }
 
 
     @GetMapping("/listitems")
@@ -193,15 +256,6 @@ public class MainController {
 
 
 
-    @PostMapping("/process")
-    public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result){
-
-        if (result.hasErrors()) {
-            return "additem";
-        }
-        itemRepository.save(item);
-        return "redirect:/list";
-    }
 
 
     @RequestMapping("/list")
@@ -237,13 +291,36 @@ public class MainController {
         model.addAttribute("items",itemRepository.findAll());
         return"userlist";
     }
-
-
+//
+//    @RequestMapping("/detail/{id}")
+//    public String showDetail(@PathVariable("id")long id,Model model){
+//        model.addAttribute("item",itemRepository.findOne(id));
+//        model.addAttribute("user",userRepository.findUserById(id));
+//        return "showitemdetails";
+//    }
 
     @RequestMapping("/detail/{id}")
-    public String showDetail(@PathVariable("id")long id, Model model){
+    public String showDetail(@PathVariable("id")long id,Model model, Authentication auth){
+//        model.addAttribute("user",userRepository.findUserByUsername(username));
         model.addAttribute("item",itemRepository.findOne(id));
-        model.addAttribute("user",userRepository.findUserById(id));
+
+        User currentUser = userRepository.findUserByUsername(auth.getName());
+        User savedUsername = userRepository.findUserByUsername(auth.getName());
+//        currentUser.getMyItems().toString();
+//        currentUser.addItem(savedUsername);
+//        userRepository.save(currentUser);
+//
+
+
+//        User currentUser = userRepository.findUserByUsername(auth.getName());
+//        currentUser.getMyItems().toString();
+//        currentUser.addItem(item);
+//        userRepository.save(currentUser);
+//
+
+
+//        userService.saveUser(user);
+//        model.addAttribute("user",userRepository.findUserByUsername(username));
         return "showitemdetails";
     }
 

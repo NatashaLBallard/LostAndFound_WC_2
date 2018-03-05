@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns:th="www.thymeleaf.org">
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -40,10 +40,15 @@
             <td th:text="${item.found}"></td>
             <td>
                 <a th:href="@{/detail/{id}(id=${item.id})}">Details</a>
+                <!--<a th:href="@{/detail/{username}/{id} (username=${user.username}) (id=${item.id})}">Details</a>-->
             </td>
-            <td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/update/{id} (id=${item.id})}">Update</a></td>
-            <td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/found/{id} (id=${item.id})}">Found</a></td>
-            <td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/lost/{id} (id=${item.id})}">Lost</a></td>
+            <!--<td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/update/{id} (id=${item.id})}">Update</a></td>-->
+            <!--<td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/found/{id} (id=${item.id})}">Found</a></td>-->
+            <!--<td><a sec:authorize="hasAuthority('ADMIN')" th:href="@{/lost/{id} (id=${item.id})}">Lost</a></td>-->
+
+            <td><a  th:href="@{/update/{id} (id=${item.id})}">Update</a></td>
+            <td><a th:href="@{/found/{id} (id=${item.id})}">Found</a></td>
+            <td><a  th:href="@{/lost/{id} (id=${item.id})}">Lost</a></td>
         </tr>
         </tbody>
        <a sec:authorize="hasAuthority('ADMIN')" th:href="currentlist">Show All Reports</a>

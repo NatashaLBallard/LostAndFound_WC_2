@@ -20,6 +20,9 @@ public class Item {
     @Size(min=1)
     private String alias;
 
+
+    private String savedUsername;
+
     @NotNull
     @Size(min=1)
     private String itemName;
@@ -45,7 +48,7 @@ public class Item {
 
 
 
-    @ManyToMany
+    @ManyToOne
 //            (mappedBy = "items")
     private Set<User> users;
 
@@ -53,6 +56,22 @@ public class Item {
         this.users = new HashSet<>();
     }
 
+
+
+
+    public Item(String alias, String savedUsername, String itemName, String description, String dateLost, String image,
+                 String found, String itemCategory, String search) {
+        this.alias = alias;
+        this.savedUsername = savedUsername;
+        this.itemName = itemName;
+        this.dateLost = dateLost;
+        this.description = description;
+        this.image = image;
+        this.found = found;
+        this.itemCategory = itemCategory;
+        this.search = search;
+
+    }
 
 
     public Set<User> getUsers(){
@@ -140,6 +159,8 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "itemName='" + itemName + '\'' +
+                ", alias='" + alias + '\'' +
+                ", savedUsername='" + savedUsername + '\'' +
                 ", description='" + description + '\'' +
                 ", dateLost='" + dateLost + '\'' +
                 ", image='" + image + '\'' +
@@ -163,5 +184,13 @@ public class Item {
 
     public void setSearch(String search) {
         this.search = search;
+    }
+
+    public String getSavedUsername() {
+        return savedUsername;
+    }
+
+    public void setSavedUsername(String savedUsername) {
+        this.savedUsername = savedUsername;
     }
 }

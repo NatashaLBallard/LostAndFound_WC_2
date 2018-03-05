@@ -40,9 +40,9 @@ public class User {
 
 
 
-    @ManyToMany
- (mappedBy = "users")
-    private Set<Item> myItems;
+    @OneToMany
+ (mappedBy = "users", cascade = CascadeType.ALL)
+    public Set<Item> myItems;
 
     public User() {
         this.myItems = new HashSet<>();
