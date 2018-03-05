@@ -214,7 +214,7 @@ public class MainController {
     @RequestMapping("/listfound")
     public String listOfFoundItems(Model model){
         model.addAttribute("items",itemRepository.findAllByFoundContainingIgnoreCase("Yes"));
-        return"list";
+        return"listfound";
     }
 
     @RequestMapping("/currentlist")
