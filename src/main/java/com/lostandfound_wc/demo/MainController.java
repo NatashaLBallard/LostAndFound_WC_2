@@ -78,37 +78,10 @@ public class MainController {
         item.setUsers(currentUser);
 //        item.setSavedUsername(String.valueOf(currentUser));
         item.setSavedUsername(auth.getName());
-        System.out.println(item.getId() +" - This is the item ID to be saved");
-        System.out.println(item.getUsers().username +" - This is the saved username.");
+//        System.out.println(item.getId() +" - This is the item ID to be saved");
+//        System.out.println(item.getUsers().username +" - This is the saved username.");
 
-
-
-
-        //Test
-//        userRepository.save(user);
-//        User saveThisUsername = itemRepository.findUserByUsername(auth.getName());
-//        saveThisUsername.getMyItems().toString();
-//        saveThisUsername.addItem(item);
-//
-//
-//        item.setSavedUsername(auth.getName());
-//        user.setUsername(auth.getName());
-
-//        item.setUsers(currentUser);
         itemRepository.save(item);
-//        userRepository.save(currentUser);
-
-//
-
-
-
-
-      //  Item receivedName = itemRepository.findByUsername("currentUser");
-//        currentUser.getMyItems().toString();
-//        currentUser.addItem(item);
-////        savedUsername.
-//
-//        userRepository.save(currentUser);
 
         return "redirect:/";
 

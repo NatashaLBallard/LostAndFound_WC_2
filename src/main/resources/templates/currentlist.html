@@ -30,8 +30,10 @@
         <tbody>
 
         <tr th:each="item : ${items}">
-            <td><img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/></td>
+            <!--<td><img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/></td>-->
 
+
+            <td><img  th:src="(${item.image}==null)?'https://static1.squarespace.com/static/50c2031de4b02a7395e3e36f/t/5579a8e5e4b0204b4bc3a1b1/1434036455283/LostAndFoundBoxShutterstock.jpg':${item.image}"  style="width:30%"/></td>
             <!--<td><span sec:authorize="isAuthenticated()">-->
                 <!--<p sec:authentication="name"></p>-->
                 <!--</span>-->
@@ -54,7 +56,7 @@
                 <a th:href="@{/detail/{id}(id=${item.id})}">Details</a>
             </td>
             <!--<td><a th:href="@{/update/{id} (id=${item.id})}">Update</a></td>-->
-            <td><a th:href="@{/found/{id} (id=${item.id})}">Found</a></td>
+            <td><a th:href="@{/found/{id} (id=${item.id})}" >Found</a></td>
             <td><a th:href="@{/lost/{id} (id=${item.id})}">Lost</a></td>
         </tr>
         </tbody>

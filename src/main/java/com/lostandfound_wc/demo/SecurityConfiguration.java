@@ -37,17 +37,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .formLogin().loginPage("/login").permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/add").access("hasAnyAuthority('USER','ADMIN')")
-                .antMatchers("/userlist").access("hasAnyAuthority('USER','ADMIN')")
-                .antMatchers("/showitemdetails").access("hasAnyAuthority('USER','ADMIN')")
+                .antMatchers("/add","/userlist", "/showitemdetails", "/searchbyusername","/viewcurrentuseritems").access("hasAnyAuthority('USER','ADMIN')")
 
 
 
 
-                .antMatchers("/currentlist").access("hasAuthority('ADMIN')")
-                .antMatchers("/listfound").access("hasAuthority('ADMIN')")
-                .antMatchers("/search").access("hasAuthority('ADMIN')")
-                .antMatchers("/admin").access("hasAuthority('ADMIN')")
+                .antMatchers("/currentlist", "/viewallusers","/listfound", "/search").access("hasAuthority('ADMIN')")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login").permitAll().permitAll()
@@ -60,6 +55,66 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http
                 .headers().frameOptions().disable();
     }
+
+
+
+
+
+    //    @Override
+//    protected void configure(HttpSecurity http)throws Exception{
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/","/h2-console/**","/register","/list").permitAll()
+//                .antMatchers("/add","/userlist", "/showitemdetails", "/searchbyusername","/viewcurrentuseritems").access("hasAnyAuthority('USER','ADMIN')")
+//                .antMatchers("/add","/currentlist", "/viewallusers","/listfound", "/search").access("hasAuthority('ADMIN')")
+//
+//
+////                .formLogin().loginPage("/login").permitAll()
+//
+//
+//
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .and()
+//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+////                .logoutSuccessUrl("/login").permitAll().permitAll()
+////                .and()
+////                .httpBasic();
+//
+//        http .csrf().disable();
+//
+//        http .headers().frameOptions().disable();
+//    }
+//
+//    @Override
+//    protected void configure(HttpSecurity http)throws Exception{
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/","/h2-console/**","/register","/list").permitAll()
+//                .antMatchers("/add","/userlist", "/showitemdetails", "/searchbyusername","/viewcurrentuseritems").access("hasAnyAuthority('USER','ADMIN')")
+//                .antMatchers("/add","/currentlist", "/viewallusers","/listfound", "/search").access("hasAuthority('ADMIN')")
+//
+//
+////                .formLogin().loginPage("/login").permitAll()
+//
+//
+//
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .and()
+//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+////                .logoutSuccessUrl("/login").permitAll().permitAll()
+////                .and()
+////                .httpBasic();
+//
+//        http .csrf().disable();
+//
+//        http .headers().frameOptions().disable();
+//    }
+//
+//
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{

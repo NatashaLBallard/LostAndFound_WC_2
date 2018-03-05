@@ -21,13 +21,10 @@
     <input type="hidden" th:field="*{users}" />
 
     <div class="col-3">
-        <label id="labelListOfUsers">List of Users</label>
-        <Select th:field="*{savedUsername}">
-            <option value="null" >    </option>
-            <option value="Clothes">Clothes</option>
-            <option value="Pets">Pets</option>
-            <option value="Other">Other</option>
-        </Select>
+        <label id="labelAlias">Alias Name for Submission</label>
+        <input type="text" class="form-control" id="textAlias" th:field="*{alias}" placeholder="Enter alias name for this submission"/>
+        <span th:if="${#fields.hasErrors('alias')}" th:errors="*{alias}"></span>
+    </div>
     <div class="col-3">
         <label id="labelItemName">Name of Item</label>
         <input type="text" class="form-control" id="textName" th:field="*{itemName}" placeholder="Enter name of lost item"/>

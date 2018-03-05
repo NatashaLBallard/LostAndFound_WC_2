@@ -17,10 +17,20 @@
     <h2>Item Detail</h2>
     <div class="card">
         <div class="card-body">
-            <div th:if="${item.image}!=null">
+            <!--<div th:if="${item.image}!=null">-->
+                <!--&lt;!&ndash;<img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/>&ndash;&gt;-->
+               <!--<span><img  th:src="${(${item.image}==null)?'https://static1.squarespace.com/static/50c2031de4b02a7395e3e36f/t/5579a8e5e4b0204b4bc3a1b1/1434036455283/LostAndFoundBoxShutterstock.jpg':${item.image}}"  style="width:30%"/></span>-->
+
+
+            <div th:if="${item.image}==null">
                 <img class="img-rounded" th:src="${item.image}" alt="Item Picture" style="width:30%"/>
-                <hr/>
+                <span><img  th:src="${(${item.image}==null)?'https://static1.squarespace.com/static/50c2031de4b02a7395e3e36f/t/5579a8e5e4b0204b4bc3a1b1/1434036455283/LostAndFoundBoxShutterstock.jpg':${item.image}}"  style="width:30%"/></span>
             </div>
+
+
+
+            <hr/>
+            <!--</div>-->
             <!--<b>Submitted By:</b> <Span th:text="${user.getId()}"></Span><br/>-->
             <!--<b>Submitted By:</b> <Span th:text="${#authentication.getPrincipal().getUsername()}"></Span><br/>-->
             <!--<b>Submitted By:</b> <Span th:text="${user.{id}(id=${users.id})}"></Span><br/>-->
