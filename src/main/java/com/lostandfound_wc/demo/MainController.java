@@ -64,17 +64,22 @@ public class MainController {
 //
 //    }
 //
-    @PostMapping("/add")
-    public String saveMyItem(@Valid @ModelAttribute("item") Item item, @Valid @ModelAttribute("user") User user,BindingResult result, Authentication auth)
+    @PostMapping("/process")
+    public String saveMyItem(@Valid @ModelAttribute("item") Item item,BindingResult result, Authentication auth)
     {
         if (result.hasErrors()) {
             return "add";
         }
-        itemRepository.save(item);
+
         User currentUser = userRepository.findUserByUsername(auth.getName());
         currentUser.getMyItems().toString();
-        currentUser.addItem(item);
-  //      item.setUsers(currentUser);
+//        currentUser.addItem(item);
+//        userRepository.save(currentUser);
+        item.setUsers(currentUser);
+        System.out.println(item.getId() +" - This is the item ID to be saved");
+        System.out.println(item.getUsers().username +" - This is the saved username.");
+
+
 
 
         //Test
@@ -87,8 +92,9 @@ public class MainController {
 //        item.setSavedUsername(auth.getName());
 //        user.setUsername(auth.getName());
 
-        item.setSavedUsername(auth.getName());
-        userRepository.save(currentUser);
+//        item.setUsers(currentUser);
+        itemRepository.save(item);
+//        userRepository.save(currentUser);
 
 //
 
@@ -107,44 +113,42 @@ public class MainController {
     }
 
 
-//    @PostMapping("/process")
-//    public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result, Authentication auth){
-//
-//        System.out.println(result);
-//        if (result.hasErrors()) {
-//            return "add";
-//        }
-//        else {
-////            item.setSavedUsername(auth.getName());
-////            item.setSavedUsername("");
-//
-////
-////            item.setSavedUsername(userRepository.findUserByUsername(auth.getName()));
-////            Item saveThisUsername = userRepository.findUserByUsername(auth.getName());
-////            itemRepository.save(item);
-//////
-////
-//            System.out.println(item.getId() +" - This is the item ID to be saved");
-//            System.out.println(item.getSavedUsername() +" - This is the saved username.");
-//
-//
-//            return "redirect:/list";
-//
-//        }
-
-
-    @PostMapping("/process")
-    public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result){
-        System.out.println(item.getId() +" - This is the item ID to be saved");
-        System.out.println(item.getSavedUsername() +" - This is the saved username.");
+    @PostMapping("/add")
+    public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result, Authentication auth){
 
         System.out.println(result);
         if (result.hasErrors()) {
             return "add";
         }
-        itemRepository.save(item);
-        return "redirect:/list";
+        else {
+//            item.setSavedUsername(auth.getName());
+//            item.setSavedUsername("");
+
+//
+//            item.setSavedUsername(userRepository.findUserByUsername(auth.getName()));
+//            Item saveThisUsername = userRepository.findUserByUsername(auth.getName());
+//            itemRepository.save(item);
+////
+//
+
+
+            return "redirect:/list";
+
+        }
     }
+
+//    @PostMapping("/process")
+//    public String processItem(@Valid @ModelAttribute("item") Item item,BindingResult result){
+//        System.out.println(item.getId() +" - This is the item ID to be saved");
+//        System.out.println(item.getSavedUsername() +" - This is the saved username.");
+//
+//        System.out.println(result);
+//        if (result.hasErrors()) {
+//            return "add";
+//        }
+//        itemRepository.save(item);
+//        return "redirect:/list";
+//    }
 
 
 

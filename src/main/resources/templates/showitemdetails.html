@@ -25,7 +25,7 @@
             <!--<b>Submitted By:</b> <Span th:text="${#authentication.getPrincipal().getUsername()}"></Span><br/>-->
             <!--<b>Submitted By:</b> <Span th:text="${user.{id}(id=${users.id})}"></Span><br/>-->
             <b>Alias Name:</b> <Span th:text="${item.alias}"></Span><br/>
-            <b>Submitted By:</b> <Span th:text="${item.savedUsername}"></Span><br/>
+            <b>Submitted By:</b> <Span th:text="${item.users.username}"></Span><br/>
             <b>Submission ID:</b> <Span th:text="${item.id}"></Span><br/>
             <b>Name of Item:</b> <Span th:text="${item.itemName}"></Span><br/>
             <b>Category:</b> <Span th:text="${item.itemCategory}"></Span><br/>
